@@ -30,4 +30,6 @@ env/
 # IDE
 .vscode/
 .idea/
-"@ | Out-File -FilePath .gitignore -Encoding utf8
+"@ | Out-File -FilePath .gitignore -Encoding utf8*.egg-info/
+dist/
+build/
