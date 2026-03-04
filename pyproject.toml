@@ -4,38 +4,80 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "edapipeline"
-version = "0.1.4"
-description = "Comprehensive Exploratory Data Analysis Pipeline"
+version = "0.2.0"
+description = "Modular, Agentic Exploratory Data Analysis Pipeline"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
     {name = "Syed Nazmus Sakib", email = "your.email@example.com"}
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering :: Information Analysis",
     "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
-    "numpy>=1.19.0",
-    "pandas>=1.1.0",
-    "matplotlib>=3.3.0",
-    "seaborn>=0.11.0",
-    "scipy>=1.5.0",
+    "numpy>=1.22.0",
+    "pandas>=1.4.0",
+    "matplotlib>=3.5.0",
+    "seaborn>=0.12.0",
+    "scipy>=1.8.0",
+]
+
+[project.optional-dependencies]
+agents = [
+    "httpx>=0.24.0",
+    "openai>=1.0.0",
+]
+interactive = [
+    "plotly>=5.10.0",
+]
+reports = [
+    "jinja2>=3.1.0",
+    "rich>=13.0.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+all = [
+    "edapipeline[agents,interactive,reports,dev]",
 ]
 
 [project.urls]
 Homepage = "https://github.com/SyedNazmusSakib-SNS/EDAPipeline"
+Documentation = "https://github.com/SyedNazmusSakib-SNS/EDAPipeline#readme"
 "Bug Tracker" = "https://github.com/SyedNazmusSakib-SNS/EDAPipeline/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning:edapipeline",
+]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
